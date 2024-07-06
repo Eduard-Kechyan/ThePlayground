@@ -16,6 +16,11 @@ public class CameraFollow : MonoBehaviour
     public float lookSpeed = 5f;
     public float followOffset = 10f;
     public float followSpeed = 5f;
+
+
+    [Space(20)]
+    public bool set = false;
+
     private Vector3 followTarget;
 
     void Awake()
@@ -33,11 +38,12 @@ public class CameraFollow : MonoBehaviour
 
     void OnValidate()
     {
-        CalcOrbit();
+        if (set)
+        {
+            set = false;
 
-        LookAtTarget();
-
-        FollowTarget();
+            SetCamera();
+        }
     }
 
     void LateUpdate()
@@ -49,11 +55,14 @@ public class CameraFollow : MonoBehaviour
 
     void LookAtTarget()
     {
+        transform.rotation = Quaternion.Lerp(transform.rotation, CalcRotation(), lookSpeed * Time.deltaTime);
+    }
+
+    Quaternion CalcRotation()
+    {
         Vector3 direction = (target.position - transform.position).normalized;
 
-        Quaternion lookRotation = Quaternion.LookRotation(direction);
-
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, lookSpeed * Time.deltaTime);
+        return Quaternion.LookRotation(direction);
     }
 
     void FollowTarget()
@@ -70,5 +79,14 @@ public class CameraFollow : MonoBehaviour
         Vector3 orbitForward = orbitQuat * Vector3.forward;
 
         followTarget = target.TransformPoint(orbitForward * distance);
+    }
+
+    void SetCamera()
+    {
+        CalcOrbit();
+
+        transform.position = followTarget;
+
+        transform.rotation = CalcRotation();
     }
 }
