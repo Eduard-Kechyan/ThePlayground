@@ -43,28 +43,28 @@ public class ShipInput : MonoBehaviour
     void HandleInput()
     {
         // Get boost
-        shipMovement.isBoosted = inputActions.Default.Boost.IsPressed();
+        shipMovement.isBoosted = inputActions.HomingMissile.Boost.IsPressed();
 
         // Get Pitch, Yaw and Roll
         bool yawPressed = false;
         bool pitchPressed = false;
 
-        if (inputActions.Default.Yaw.IsPressed())
+        if (inputActions.HomingMissile.Yaw.IsPressed())
         {
-            yawTemp = inputActions.Default.Yaw.ReadValue<float>();
+            yawTemp = inputActions.HomingMissile.Yaw.ReadValue<float>();
             yawPressed = true;
         }
 
-        if (inputActions.Default.Pitch.IsPressed())
+        if (inputActions.HomingMissile.Pitch.IsPressed())
         {
-            if (!ignorePositivePitchInput || (ignorePositivePitchInput && inputActions.Default.Pitch.ReadValue<float>() < 0))
+            if (!ignorePositivePitchInput || (ignorePositivePitchInput && inputActions.HomingMissile.Pitch.ReadValue<float>() < 0))
             {
-                pitchTemp = inputActions.Default.Pitch.ReadValue<float>();
+                pitchTemp = inputActions.HomingMissile.Pitch.ReadValue<float>();
                 pitchPressed = true;
             }
         }
 
-        rollTemp = inputActions.Default.Yaw.ReadValue<float>(); // Yaw is used here
+        rollTemp = inputActions.HomingMissile.Yaw.ReadValue<float>(); // Yaw is used here
 
         // Control the ship
         if (yawPressed && pitchPressed)

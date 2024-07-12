@@ -24,7 +24,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     ""name"": ""InputActions"",
     ""maps"": [
         {
-            ""name"": ""Default"",
+            ""name"": ""HomingMissile"",
             ""id"": ""a556314f-7d65-4a6c-8e5a-7feb29e984e1"",
             ""actions"": [
                 {
@@ -196,6 +196,94 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""VectorsAndMore"",
+            ""id"": ""679cba64-a25e-496d-91a1-c48c562cc897"",
+            ""actions"": [
+                {
+                    ""name"": ""MoveUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""6f83a596-c4d2-4dad-be53-416d2e999ce7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d17e0cd-1de8-4a77-a061-6dd664443cd4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8339f46-ec76-4b8e-9453-4ce87a70b23b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""bd88feda-34bc-4ede-8c67-578f374fee1b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7e132b17-4f7b-4702-9f33-ba32596b1121"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61f86bf2-ed6a-48cb-a65f-abb363ba4205"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""95ade98b-e718-4ae1-af07-00b76da237dd"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c85914a-7008-4790-b83b-ed70b14d3b53"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MoveRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -217,13 +305,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Default
-        m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
-        m_Default_Boost = m_Default.FindAction("Boost", throwIfNotFound: true);
-        m_Default_Reset = m_Default.FindAction("Reset", throwIfNotFound: true);
-        m_Default_Yaw = m_Default.FindAction("Yaw", throwIfNotFound: true);
-        m_Default_Pitch = m_Default.FindAction("Pitch", throwIfNotFound: true);
-        m_Default_Roll = m_Default.FindAction("Roll", throwIfNotFound: true);
+        // HomingMissile
+        m_HomingMissile = asset.FindActionMap("HomingMissile", throwIfNotFound: true);
+        m_HomingMissile_Boost = m_HomingMissile.FindAction("Boost", throwIfNotFound: true);
+        m_HomingMissile_Reset = m_HomingMissile.FindAction("Reset", throwIfNotFound: true);
+        m_HomingMissile_Yaw = m_HomingMissile.FindAction("Yaw", throwIfNotFound: true);
+        m_HomingMissile_Pitch = m_HomingMissile.FindAction("Pitch", throwIfNotFound: true);
+        m_HomingMissile_Roll = m_HomingMissile.FindAction("Roll", throwIfNotFound: true);
+        // VectorsAndMore
+        m_VectorsAndMore = asset.FindActionMap("VectorsAndMore", throwIfNotFound: true);
+        m_VectorsAndMore_MoveUp = m_VectorsAndMore.FindAction("MoveUp", throwIfNotFound: true);
+        m_VectorsAndMore_MoveDown = m_VectorsAndMore.FindAction("MoveDown", throwIfNotFound: true);
+        m_VectorsAndMore_MoveLeft = m_VectorsAndMore.FindAction("MoveLeft", throwIfNotFound: true);
+        m_VectorsAndMore_MoveRight = m_VectorsAndMore.FindAction("MoveRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -282,32 +376,32 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Default
-    private readonly InputActionMap m_Default;
-    private List<IDefaultActions> m_DefaultActionsCallbackInterfaces = new List<IDefaultActions>();
-    private readonly InputAction m_Default_Boost;
-    private readonly InputAction m_Default_Reset;
-    private readonly InputAction m_Default_Yaw;
-    private readonly InputAction m_Default_Pitch;
-    private readonly InputAction m_Default_Roll;
-    public struct DefaultActions
+    // HomingMissile
+    private readonly InputActionMap m_HomingMissile;
+    private List<IHomingMissileActions> m_HomingMissileActionsCallbackInterfaces = new List<IHomingMissileActions>();
+    private readonly InputAction m_HomingMissile_Boost;
+    private readonly InputAction m_HomingMissile_Reset;
+    private readonly InputAction m_HomingMissile_Yaw;
+    private readonly InputAction m_HomingMissile_Pitch;
+    private readonly InputAction m_HomingMissile_Roll;
+    public struct HomingMissileActions
     {
         private @InputActions m_Wrapper;
-        public DefaultActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Boost => m_Wrapper.m_Default_Boost;
-        public InputAction @Reset => m_Wrapper.m_Default_Reset;
-        public InputAction @Yaw => m_Wrapper.m_Default_Yaw;
-        public InputAction @Pitch => m_Wrapper.m_Default_Pitch;
-        public InputAction @Roll => m_Wrapper.m_Default_Roll;
-        public InputActionMap Get() { return m_Wrapper.m_Default; }
+        public HomingMissileActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Boost => m_Wrapper.m_HomingMissile_Boost;
+        public InputAction @Reset => m_Wrapper.m_HomingMissile_Reset;
+        public InputAction @Yaw => m_Wrapper.m_HomingMissile_Yaw;
+        public InputAction @Pitch => m_Wrapper.m_HomingMissile_Pitch;
+        public InputAction @Roll => m_Wrapper.m_HomingMissile_Roll;
+        public InputActionMap Get() { return m_Wrapper.m_HomingMissile; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(DefaultActions set) { return set.Get(); }
-        public void AddCallbacks(IDefaultActions instance)
+        public static implicit operator InputActionMap(HomingMissileActions set) { return set.Get(); }
+        public void AddCallbacks(IHomingMissileActions instance)
         {
-            if (instance == null || m_Wrapper.m_DefaultActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_DefaultActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_HomingMissileActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_HomingMissileActionsCallbackInterfaces.Add(instance);
             @Boost.started += instance.OnBoost;
             @Boost.performed += instance.OnBoost;
             @Boost.canceled += instance.OnBoost;
@@ -325,7 +419,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Roll.canceled += instance.OnRoll;
         }
 
-        private void UnregisterCallbacks(IDefaultActions instance)
+        private void UnregisterCallbacks(IHomingMissileActions instance)
         {
             @Boost.started -= instance.OnBoost;
             @Boost.performed -= instance.OnBoost;
@@ -344,21 +438,91 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Roll.canceled -= instance.OnRoll;
         }
 
-        public void RemoveCallbacks(IDefaultActions instance)
+        public void RemoveCallbacks(IHomingMissileActions instance)
         {
-            if (m_Wrapper.m_DefaultActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_HomingMissileActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
-        public void SetCallbacks(IDefaultActions instance)
+        public void SetCallbacks(IHomingMissileActions instance)
         {
-            foreach (var item in m_Wrapper.m_DefaultActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_HomingMissileActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_DefaultActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_HomingMissileActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
-    public DefaultActions @Default => new DefaultActions(this);
+    public HomingMissileActions @HomingMissile => new HomingMissileActions(this);
+
+    // VectorsAndMore
+    private readonly InputActionMap m_VectorsAndMore;
+    private List<IVectorsAndMoreActions> m_VectorsAndMoreActionsCallbackInterfaces = new List<IVectorsAndMoreActions>();
+    private readonly InputAction m_VectorsAndMore_MoveUp;
+    private readonly InputAction m_VectorsAndMore_MoveDown;
+    private readonly InputAction m_VectorsAndMore_MoveLeft;
+    private readonly InputAction m_VectorsAndMore_MoveRight;
+    public struct VectorsAndMoreActions
+    {
+        private @InputActions m_Wrapper;
+        public VectorsAndMoreActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @MoveUp => m_Wrapper.m_VectorsAndMore_MoveUp;
+        public InputAction @MoveDown => m_Wrapper.m_VectorsAndMore_MoveDown;
+        public InputAction @MoveLeft => m_Wrapper.m_VectorsAndMore_MoveLeft;
+        public InputAction @MoveRight => m_Wrapper.m_VectorsAndMore_MoveRight;
+        public InputActionMap Get() { return m_Wrapper.m_VectorsAndMore; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(VectorsAndMoreActions set) { return set.Get(); }
+        public void AddCallbacks(IVectorsAndMoreActions instance)
+        {
+            if (instance == null || m_Wrapper.m_VectorsAndMoreActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_VectorsAndMoreActionsCallbackInterfaces.Add(instance);
+            @MoveUp.started += instance.OnMoveUp;
+            @MoveUp.performed += instance.OnMoveUp;
+            @MoveUp.canceled += instance.OnMoveUp;
+            @MoveDown.started += instance.OnMoveDown;
+            @MoveDown.performed += instance.OnMoveDown;
+            @MoveDown.canceled += instance.OnMoveDown;
+            @MoveLeft.started += instance.OnMoveLeft;
+            @MoveLeft.performed += instance.OnMoveLeft;
+            @MoveLeft.canceled += instance.OnMoveLeft;
+            @MoveRight.started += instance.OnMoveRight;
+            @MoveRight.performed += instance.OnMoveRight;
+            @MoveRight.canceled += instance.OnMoveRight;
+        }
+
+        private void UnregisterCallbacks(IVectorsAndMoreActions instance)
+        {
+            @MoveUp.started -= instance.OnMoveUp;
+            @MoveUp.performed -= instance.OnMoveUp;
+            @MoveUp.canceled -= instance.OnMoveUp;
+            @MoveDown.started -= instance.OnMoveDown;
+            @MoveDown.performed -= instance.OnMoveDown;
+            @MoveDown.canceled -= instance.OnMoveDown;
+            @MoveLeft.started -= instance.OnMoveLeft;
+            @MoveLeft.performed -= instance.OnMoveLeft;
+            @MoveLeft.canceled -= instance.OnMoveLeft;
+            @MoveRight.started -= instance.OnMoveRight;
+            @MoveRight.performed -= instance.OnMoveRight;
+            @MoveRight.canceled -= instance.OnMoveRight;
+        }
+
+        public void RemoveCallbacks(IVectorsAndMoreActions instance)
+        {
+            if (m_Wrapper.m_VectorsAndMoreActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IVectorsAndMoreActions instance)
+        {
+            foreach (var item in m_Wrapper.m_VectorsAndMoreActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_VectorsAndMoreActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public VectorsAndMoreActions @VectorsAndMore => new VectorsAndMoreActions(this);
     private int m_DefaultControlSchemeSchemeIndex = -1;
     public InputControlScheme DefaultControlSchemeScheme
     {
@@ -368,12 +532,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_DefaultControlSchemeSchemeIndex];
         }
     }
-    public interface IDefaultActions
+    public interface IHomingMissileActions
     {
         void OnBoost(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
         void OnYaw(InputAction.CallbackContext context);
         void OnPitch(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);
+    }
+    public interface IVectorsAndMoreActions
+    {
+        void OnMoveUp(InputAction.CallbackContext context);
+        void OnMoveDown(InputAction.CallbackContext context);
+        void OnMoveLeft(InputAction.CallbackContext context);
+        void OnMoveRight(InputAction.CallbackContext context);
     }
 }
