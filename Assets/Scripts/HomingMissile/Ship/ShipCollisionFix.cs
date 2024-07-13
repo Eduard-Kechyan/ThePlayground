@@ -65,7 +65,7 @@ public class ShipCollisionFix : MonoBehaviour
         float radius = shipMovement.isBoosted ? castRadiusBoosted : castRadius;
         Vector3 offset = shipMovement.isBoosted ? castOffsetBoost : castOffset;
 
-        if (Physics.SphereCast(followTarget, radius, transform.forward, out hit, radius*2, castLayerMask, QueryTriggerInteraction.Collide))
+        if (Physics.SphereCast(followTarget, radius, transform.forward, out hit, radius * 2, castLayerMask, QueryTriggerInteraction.Collide))
         {
             if (hit.collider.name == "Floor")
             {
